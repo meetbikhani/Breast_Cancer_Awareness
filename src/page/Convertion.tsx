@@ -85,10 +85,10 @@ export default function ConversionComponent() {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-900 mb-4 font-sans text-balance">
-            CSV to JSON <span className="text-pink-600">Converter</span>
+            Breast Cancer <span className="text-pink-600">Detector</span>
           </h1>
           <p className="text-lg text-gray-600 font-sans">
-            Upload your breast cancer awareness data in CSV format and convert it to JSON
+            Upload your breast cancer gene data in CSV format and get the result
           </p>
         </div>
 
@@ -121,7 +121,7 @@ export default function ConversionComponent() {
             {success && (
               <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                <p className="text-green-800 font-sans">File converted and downloaded successfully!</p>
+                <p className="text-green-800 font-sans">File uploaded successfully!</p>
               </div>
             )}
 
@@ -186,12 +186,12 @@ export default function ConversionComponent() {
               {loading ? (
                 <>
                   <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                  Converting...
+                  Predicting...
                 </>
               ) : (
                 <>
                   <Download className="w-5 h-5 mr-2" />
-                  Convert 
+                  Predict 
                 </>
               )}
             </Button>
@@ -199,9 +199,8 @@ export default function ConversionComponent() {
             <div className="pt-6 border-t border-gray-200">
               <h3 className="font-semibold text-gray-900 mb-3 font-sans">How it works:</h3>
               <ol className="space-y-2 text-sm text-gray-700 font-sans list-decimal list-inside">
-                <li>Select your CSV file containing breast cancer data</li>
-                <li>Click "Convert & Download JSON" to process the file</li>
-                <li>The converted JSON file will download automatically</li>
+                <li>Select your CSV file containing breast cancer gene data</li>
+                <li>Click "Predict" to process the file</li>
               </ol>
             </div>
           </div>

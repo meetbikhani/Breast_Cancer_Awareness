@@ -18,7 +18,7 @@ export default function Home() {
             />
             <h1 className="text-2xl font-semibold text-pink-400 italic">Breast Cancer Awareness</h1>
           </div>
-          <nav className="hidden md:flex gap-8">
+          {/* <nav className="hidden md:flex gap-8">
             <a href="#about" className="text-gray-700 hover:text-pink-600 transition-colors font-sans text-sm">
               About
             </a>
@@ -31,7 +31,7 @@ export default function Home() {
             <a href="#contact" className="text-gray-700 hover:text-pink-600 transition-colors font-sans text-sm">
               Contact
             </a>
-          </nav>
+          </nav> */}
         </div>
       </header>
 
@@ -59,13 +59,13 @@ export default function Home() {
                 end breast cancer.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button
+            <div className="flex flex-col sm:flex-row gap-4 ">
+              {/* <Button
                 size="lg"
                 className="bg-pink-600 hover:bg-pink-700 text-white rounded-lg font-sans font-semibold shadow-lg"
               >
                 Learn More <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
+              </Button> */}
               <Button
                 asChild
                 size="lg"
@@ -184,7 +184,7 @@ export default function Home() {
             Every contribution helps us continue our mission of awareness, research, and support for those affected by
             breast cancer.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button size="lg" className="bg-white text-pink-600 hover:bg-pink-50 rounded-lg font-sans font-semibold">
               Donate <Heart className="w-5 h-5 ml-2" />
             </Button>
@@ -195,14 +195,14 @@ export default function Home() {
             >
               Volunteer
             </Button>
-          </div>
+          </div> */}
         </div>
       </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-12">
+          {/* <div className="grid md:grid-cols-4 gap-8 mb-12">
             <div className="space-y-4">
               <h4 className="text-white font-bold text-lg font-sans">About</h4>
               <ul className="space-y-2 text-sm font-sans">
@@ -278,7 +278,7 @@ export default function Home() {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
           <div className="border-t border-gray-800 pt-8 text-center text-sm font-sans">
             <p>
               &copy; 2025 Breast Cancer Awareness Initiative. All rights reserved. |{" "}
