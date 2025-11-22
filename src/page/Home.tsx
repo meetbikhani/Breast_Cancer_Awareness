@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Heart, Users, BookOpen, Phone, ArrowRight } from "lucide-react"
+import { Heart, Users, BookOpen, Phone } from "lucide-react"
 import { Link } from "react-router-dom"
 
 export default function Home() {
