@@ -14,8 +14,8 @@ export default function ConversionComponent() {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [fileName, setFileName] = useState<string>("")
-  const [percentage, setPercentage] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
+  const [percentage, setPercentage] = useState<string | number>("");
+  const [status, setStatus] = useState<string | boolean>("");
 
 
 
@@ -31,6 +31,8 @@ export default function ConversionComponent() {
       setError(null)
       setSuccess(false)
       setFileName(selectedFile.name)
+      setPercentage("")
+      setStatus("")
     }
   }
 
@@ -58,14 +60,13 @@ export default function ConversionComponent() {
       }
   
       const payload = await response.json();
-      // console.log(payload);
-      const percentage = payload.prediction.risk_percentage;
+      //console.log(payload);
+      const percentage = payload.prediction.risk_percent;
       const status = payload.prediction.will_relapse;
+      console.log(percentage, status);
       setPercentage(percentage);
       setStatus(status);
       setSuccess(true)
-      setFile(null)
-      setFileName("")
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred during conversion")
     } finally {
@@ -121,6 +122,49 @@ export default function ConversionComponent() {
               <div className="flex items-center gap-3 p-4 bg-green-50 border border-green-200 rounded-lg">
                 <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                 <p className="text-green-800 font-sans">File converted and downloaded successfully!</p>
+              </div>
+            )}
+
+            {/* Results Display */}
+            {(percentage || percentage === 0) && (status !== "" || typeof status === 'boolean') && (
+              <div className="p-6 bg-gradient-to-br from-pink-50 to-white border-2 border-pink-200 rounded-2xl shadow-lg">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 font-sans text-center">Prediction Results</h3>
+                <div className="space-y-6">
+                  {/* Risk Percentage */}
+                  <div className="text-center">
+                    <p className="text-sm font-semibold text-gray-700 mb-2 font-sans uppercase tracking-wide">Risk Percentage</p>
+                    <div className="text-6xl font-bold text-pink-600 font-sans mb-1">
+                      {typeof percentage === 'number' ? percentage.toFixed(1) : percentage}{typeof percentage === 'number' || String(percentage).includes('%') ? '' : '%'}
+                    </div>
+                  </div>
+                  
+                  {/* Status */}
+                  <div className="text-center">
+                    <p className="text-sm font-semibold text-gray-700 mb-2 font-sans uppercase tracking-wide">Relapse Prediction</p>
+                    {(() => {
+                      const isRelapse = status === true || status === 'true' || String(status).toLowerCase() === 'yes' || String(status).toLowerCase() === 'will relapse';
+                      return (
+                        <div className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-sans font-semibold text-lg ${
+                          isRelapse
+                            ? 'bg-red-100 text-red-800 border-2 border-red-300'
+                            : 'bg-green-100 text-green-800 border-2 border-green-300'
+                        }`}>
+                          {isRelapse ? (
+                            <>
+                              <AlertCircle className="w-5 h-5" />
+                              <span>Will Relapse</span>
+                            </>
+                          ) : (
+                            <>
+                              <CheckCircle className="w-5 h-5" />
+                              <span>Will Not Relapse</span>
+                            </>
+                          )}
+                        </div>
+                      );
+                    })()}
+                  </div>
+                </div>
               </div>
             )}
 
