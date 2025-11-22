@@ -14,6 +14,9 @@ export default function ConversionComponent() {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [fileName, setFileName] = useState<string>("")
+  const [percentage, setPercentage] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
+
 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,25 +48,21 @@ export default function ConversionComponent() {
       const formData = new FormData()
       formData.append("file", file)
 
-      const response = await fetch("http://localhost:3000/convert", {
+      const response = await fetch("https://jack-nonelectrolytic-unsympathisingly.ngrok-free.dev/convert", {
         method: "POST",
         body: formData,
       })
-
       if (!response.ok) {
-        throw new Error(`Server error: ${response.statusText}`)
+        const detail = await response.json().catch(() => ({}));
+        throw new Error(detail.detail || `Server responded with ${response.status}`);
       }
-
-      const blob = await response.blob()
-      const url = window.URL.createObjectURL(blob)
-      const link = document.createElement("a")
-      link.href = url
-      link.download = `${file.name.replace(".csv", ".json")}`
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      window.URL.revokeObjectURL(url)
-
+  
+      const payload = await response.json();
+      // console.log(payload);
+      const percentage = payload.prediction.risk_percentage;
+      const status = payload.prediction.will_relapse;
+      setPercentage(percentage);
+      setStatus(status);
       setSuccess(true)
       setFile(null)
       setFileName("")
@@ -148,11 +147,10 @@ export default function ConversionComponent() {
               ) : (
                 <>
                   <Download className="w-5 h-5 mr-2" />
-                  Convert & Download JSON
+                  Convert 
                 </>
               )}
             </Button>
-
             {/* Instructions */}
             <div className="pt-6 border-t border-gray-200">
               <h3 className="font-semibold text-gray-900 mb-3 font-sans">How it works:</h3>
