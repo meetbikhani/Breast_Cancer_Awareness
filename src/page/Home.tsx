@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Heart, Users, BookOpen, Phone, ArrowRight } from "lucide-react"
+import { Link } from "react-router-dom"
 
 export default function Home() {
   return (
@@ -66,10 +67,11 @@ export default function Home() {
                 Learn More <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
               <Button
+                asChild
                 size="lg"
                 className="bg-white text-pink-600 hover:bg-pink-50 rounded-lg font-sans font-semibold shadow-lg"
               >
-                Donate Now
+                <Link to="/convert">Convert</Link>
               </Button>
             </div>
           </div>
@@ -98,7 +100,7 @@ export default function Home() {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-pink-50 to-white">
+      <section className="py-24 Convertpx-4 sm:px-6 lg:px-8 bg-gradient-to-b from-pink-50 to-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-5xl font-bold text-center text-gray-900 mb-16 font-sans text-balance">By The Numbers</h2>
           <div className="grid md:grid-cols-3 gap-8">
