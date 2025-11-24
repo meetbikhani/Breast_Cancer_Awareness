@@ -52,6 +52,7 @@ export default function ConversionComponent() {
 
       const response = await fetch("https://jack-nonelectrolytic-unsympathisingly.ngrok-free.dev/convert", {
         method: "POST",
+        credentials: 'include',
         body: formData,
       })
       if (!response.ok) {
